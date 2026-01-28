@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | BIOBUILDS - Passivhaus, Modulbau, Holzrahmenbau & Fertighäuser</title>
+<meta name="description" content="Fachguides zu Passivhaus-Zertifizierung, Modulbau, Holzrahmenbau und Fertighäusern. Reale Kosten, Zeitpläne und Einblicke von BIOBUILDS.">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog | BIOBUILDS">
+<meta property="og:description" content="Fachguides zu Passivhaus, Modulbau, Holzrahmenbau und Fertighäusern.">
+<meta property="og:image" content="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6828914f9f8dc32554422833_Biobuilds%20Projects%20Passive%20Modular%20Case.avif">
+<meta property="og:url" content="https://biobuilds.com/blog">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog | BIOBUILDS">
+<meta name="twitter:description" content="Fachguides zu Passivhaus, Modulbau, Holzrahmenbau und Fertighäusern.">
+<meta name="twitter:image" content="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6828914f9f8dc32554422833_Biobuilds%20Projects%20Passive%20Modular%20Case.avif">
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "CollectionPage",
+"@id": "https://biobuilds.com/blog#webpage",
+"url": "https://biobuilds.com/blog",
+"name": "Blog | BIOBUILDS",
+"description": "Fachguides zu Passivhaus-Zertifizierung, Modulbau, Holzrahmenbau und Fertighäusern.",
+"isPartOf": {"@id": "https://biobuilds.com#website"},
+"publisher": {"@id": "https://biobuilds.com#organization"}
+},
+{
+"@type": "BreadcrumbList",
+"itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://biobuilds.com"},
+{"@type": "ListItem", "position": 2, "name": "Blog"}
+]
+},
+{
+"@type": "Organization",
+"@id": "https://biobuilds.com#organization",
+"name": "BIOBUILDS",
+"url": "https://biobuilds.com",
+"logo": "https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6801f6c304852fb7ed2291d0_Biobuilds%20Logo%20Modular%203.0.avif",
+"description": "Passivhaus-zertifizierter Hersteller modularer Häuser mit 98% organischen Materialien. 21 Tage Produktion.",
+"sameAs": [
+"https://instagram.com/biobuilds",
+"https://linkedin.com/company/biobuilds",
+"https://www.facebook.com/biobuilds"
+]
+}
+]
+}
+</script>
+<style>
+:root{--color-title:#14171c;--color-paragraph:#737579;--color-muted:#a0a4a8;--color-bg:#fff;--color-bg-subtle:#f8f9fa;--color-bg-offset:#f1f3f4;--color-border:#e8eaed;--color-border-light:#f0f1f3;--color-inverse:#14171c;--color-inverse-text:#fff;--hero-gradient:linear-gradient(to bottom,rgba(10,11,12,0.02) 0,rgba(10,11,12,0.08) 30%,rgba(10,11,12,0.45) 65%,rgba(10,11,12,0.75) 100%);--font-primary:'Poppins',-apple-system,BlinkMacSystemFont,sans-serif;--padding-desktop:5%;--padding-mobile:1.5rem;--transition:.3s cubic-bezier(0.4,0,0.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--font-primary);background:var(--color-bg);color:var(--color-paragraph);line-height:1.6}
+::selection{background:var(--color-title);color:var(--color-inverse-text)}
+
+/* Page Header */
+.bb-page-header{padding:6rem var(--padding-desktop) 4rem;max-width:1280px;margin:0 auto}
+@media(max-width:767px){.bb-page-header{padding:4rem var(--padding-mobile) 3rem}}
+.bb-page-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.75rem;font-weight:400;color:var(--color-muted);margin-bottom:2rem}
+.bb-page-breadcrumb a{color:var(--color-muted);text-decoration:none;transition:color var(--transition)}
+.bb-page-breadcrumb a:hover{color:var(--color-title)}
+.bb-page-breadcrumb-sep{opacity:.4}
+.bb-page-title{font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;font-weight:500;color:var(--color-title);letter-spacing:-.03em;margin-bottom:1.5rem}
+.bb-page-subtitle{font-size:1.1rem;line-height:1.7;font-weight:300;color:var(--color-paragraph);max-width:640px}
+
+/* Pillar Navigation */
+.bb-pillar-nav{position:sticky;top:0;z-index:100;background:var(--color-bg);border-bottom:1px solid var(--color-border-light);padding:0 var(--padding-desktop)}
+@media(max-width:767px){.bb-pillar-nav{padding:0 var(--padding-mobile)}}
+.bb-pillar-nav-inner{max-width:1280px;margin:0 auto;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.bb-pillar-nav-inner::-webkit-scrollbar{display:none}
+.bb-pillar-link{display:block;padding:1.25rem 1.5rem;font-size:.8rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--color-muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:all var(--transition)}
+.bb-pillar-link:hover,.bb-pillar-link.active{color:var(--color-title);border-bottom-color:var(--color-title)}
+@media(max-width:767px){.bb-pillar-link{padding:1rem 1.25rem;font-size:.75rem}}
+
+/* Container */
+.bb-container{max-width:1280px;margin:0 auto;padding:0 var(--padding-desktop)}
+@media(max-width:767px){.bb-container{padding:0 var(--padding-mobile)}}
+
+/* Pillar Section */
+.bb-pillar-section{padding:5rem 0;border-bottom:1px solid var(--color-border-light)}
+.bb-pillar-section:last-child{border-bottom:none}
+@media(max-width:767px){.bb-pillar-section{padding:3.5rem 0}}
+
+.bb-pillar-header{margin-bottom:3rem}
+.bb-pillar-label{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--color-muted);margin-bottom:.75rem}
+.bb-pillar-title{font-size:1.8rem;font-weight:500;color:var(--color-title);letter-spacing:-.02em;margin-bottom:.75rem}
+@media(max-width:767px){.bb-pillar-title{font-size:1.5rem}}
+.bb-pillar-description{font-size:.95rem;line-height:1.7;color:var(--color-paragraph);max-width:600px}
+
+/* Article Grid */
+.bb-article-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3rem}
+@media(max-width:900px){.bb-article-grid{grid-template-columns:1fr;gap:2.5rem}}
+
+/* Article Card */
+.bb-article-card{text-decoration:none;display:block}
+.bb-article-card:hover .bb-article-card-title{opacity:.6}
+.bb-article-card-img{width:100%;aspect-ratio:16/10;object-fit:cover;margin-bottom:1.5rem;background:var(--color-bg-subtle)}
+.bb-article-card-category{font-size:.6rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--color-muted);margin-bottom:.6rem}
+.bb-article-card-title{font-size:1.15rem;font-weight:500;color:var(--color-title);line-height:1.4;margin-bottom:.75rem;transition:opacity var(--transition)}
+@media(max-width:767px){.bb-article-card-title{font-size:1.05rem}}
+.bb-article-card-excerpt{font-size:.9rem;line-height:1.65;color:var(--color-paragraph);margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bb-article-card-meta{font-size:.75rem;color:var(--color-muted)}
+
+/* Featured Article (first in each pillar) */
+.bb-article-featured{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center}
+@media(max-width:900px){.bb-article-featured{grid-template-columns:1fr;gap:1.5rem}}
+.bb-article-featured .bb-article-card-img{aspect-ratio:16/10;margin-bottom:0}
+@media(max-width:900px){.bb-article-featured .bb-article-card-img{margin-bottom:0}}
+.bb-article-featured .bb-article-card-title{font-size:1.5rem;margin-bottom:1rem}
+@media(max-width:767px){.bb-article-featured .bb-article-card-title{font-size:1.25rem}}
+.bb-article-featured .bb-article-card-excerpt{-webkit-line-clamp:3}
+
+/* CTA Section */
+.bb-cta{background:var(--color-inverse);color:var(--color-inverse-text);padding:5rem var(--padding-desktop);text-align:center}
+@media(max-width:767px){.bb-cta{padding:4rem var(--padding-mobile)}}
+.bb-cta-inner{max-width:600px;margin:0 auto}
+.bb-cta-title{font-size:1.6rem;font-weight:500;letter-spacing:-.02em;margin-bottom:1rem}
+@media(max-width:767px){.bb-cta-title{font-size:1.4rem}}
+.bb-cta-text{font-size:.95rem;font-weight:300;opacity:.7;margin-bottom:2.5rem;line-height:1.7}
+.bb-cta-btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--color-inverse-text);color:var(--color-inverse);font-family:var(--font-primary);font-size:.8rem;font-weight:500;letter-spacing:.05em;padding:1.1rem 2.25rem;text-decoration:none;text-transform:uppercase;transition:all var(--transition)}
+.bb-cta-btn:hover{opacity:.9;transform:translateY(-2px)}
+.bb-cta-btn svg{width:14px;height:14px}
+
+/* Footer */
+.bb-footer{text-align:center;padding:3rem var(--padding-desktop);border-top:1px solid var(--color-border-light)}
+.bb-footer p{font-size:.75rem;color:var(--color-muted)}
+</style>
+</head>
+<body>
+
+<!-- Page Header -->
+<header class="bb-page-header">
+<nav class="bb-page-breadcrumb">
+<a href="/">Startseite</a>
+<span class="bb-page-breadcrumb-sep">/</span>
+<span>Blog</span>
+</nav>
+<h1 class="bb-page-title">Blog</h1>
+<p class="bb-page-subtitle">Fachguides zum nachhaltigen Hausbau. Reale Kosten, reale Zeitpläne, echte Einblicke von unserem Team aus Passivhaus-Berater:innen und Bauingenieur:innen.</p>
+</header>
+
+<!-- Pillar Navigation -->
+<nav class="bb-pillar-nav">
+<div class="bb-pillar-nav-inner">
+<a href="#passivhaus" class="bb-pillar-link">Passivhaus</a>
+<a href="#modular" class="bb-pillar-link">Modulbau</a>
+<a href="#timber-frame" class="bb-pillar-link">Holzrahmenbau</a>
+<a href="#prefab" class="bb-pillar-link">Fertighäuser</a>
+</div>
+</nav>
+
+<!-- Passivhaus Section -->
+<section id="passivhaus" class="bb-pillar-section">
+<div class="bb-container">
+<header class="bb-pillar-header">
+<span class="bb-pillar-label">Pillar 01</span>
+<h2 class="bb-pillar-title">Passivhaus</h2>
+<p class="bb-pillar-description">Der weltweit strengste Standard für Energieeffizienz. Alles zu Zertifizierung, Kosten, Einsparungen und warum bis zu 90% weniger Energieverbrauch heute realistisch sind.</p>
+</header>
+<div class="bb-article-grid">
+<!-- Featured Article -->
+<article class="bb-article-featured">
+<a href="/blog/what-is-passive-house" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6828914f9f8dc32554422833_Biobuilds%20Projects%20Passive%20Modular%20Case.avif" alt="Modernes Passivhaus außen" class="bb-article-card-img">
+</a>
+<div>
+<a href="/blog/what-is-passive-house" class="bb-article-card">
+<span class="bb-article-card-category">Leitfaden</span>
+<h3 class="bb-article-card-title">Was ist ein Passivhaus? Kosten, Ersparnis und der komplette Ablauf</h3>
+<p class="bb-article-card-excerpt">Der komplette Guide zum Passivhaus-Bau: Kosten in Deutschland und Rumänien, echte Einsparungsdaten, Zertifizierungsprozess und Förderprogramme für 2026.</p>
+<span class="bb-article-card-meta">14 Min. Lesezeit</span>
+</a>
+</div>
+</article>
+<!-- Article 2 -->
+<article>
+<a href="/blog/passive-house-vs-nzeb" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6894641c86291b71b9923bd9_142m2%20Alex%20-%20Key%20%2B%20Plaque%20Clean.avif" alt="Passivhaus-Zertifikat mit Plakette" class="bb-article-card-img">
+<span class="bb-article-card-category">Vergleich</span>
+<h3 class="bb-article-card-title">Passivhaus vs. nZEB: Der echte Unterschied</h3>
+<p class="bb-article-card-excerpt">Warum eine Passivhaus-Zertifizierung mehr bedeutet als die Mindestanforderungen von nZEB. Leistungsdaten, Kostenvergleich und langfristige Wertanalyse.</p>
+<span class="bb-article-card-meta">11 Min. Lesezeit</span>
+</a>
+</article>
+<!-- Article 3 -->
+<article>
+<a href="/blog/is-passive-house-worth-it" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/695f64c9bd1f25de30a09166_95m2%20Sunset%202.0.avif" alt="BIOBUILDS Passivhaus bei Sonnenuntergang" class="bb-article-card-img">
+<span class="bb-article-card-category">Analyse</span>
+<h3 class="bb-article-card-title">Lohnt sich ein Passivhaus im Jahr 2026?</h3>
+<p class="bb-article-card-excerpt">ROI-Analyse mit aktuellen Energiepreisen, Baukosten und verfügbaren Förderungen. Wann sich der Aufpreis amortisiert und wann nicht.</p>
+<span class="bb-article-card-meta">10 Min. Lesezeit</span>
+</a>
+</article>
+<!-- Article 4 -->
+<article>
+<a href="/blog/passive-house-savings-case-study" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/689d6eef65c04c0528a3deae_237m2%20Overview.avif" alt="237m2 Passivhaus Gesamtansicht" class="bb-article-card-img">
+<span class="bb-article-card-category">Fallstudie</span>
+<h3 class="bb-article-card-title">3 Jahre im Passivhaus: Reale Einsparungen</h3>
+<p class="bb-article-card-excerpt">Alex und Andreea teilen ihre echten Energiekosten, Einsparungen und ihren Alltag nach 3 Jahren in einem 95m2 BIOBUILDS Passivhaus in Rumänien.</p>
+<span class="bb-article-card-meta">12 Min. Lesezeit</span>
+</a>
+</article>
+</div>
+</div>
+</section>
+
+<!-- Modular Section -->
+<section id="modular" class="bb-pillar-section">
+<div class="bb-container">
+<header class="bb-pillar-header">
+<span class="bb-pillar-label">Pillar 02</span>
+<h2 class="bb-pillar-title">Modulbau</h2>
+<p class="bb-pillar-description">Präzision aus der Fertigung trifft Effizienz auf dem Grundstück. Wie wir Häuser in 21 Tagen bauen, mit höherer Qualität als bei klassischem Bau.</p>
+</header>
+<div class="bb-article-grid">
+<!-- Featured Article -->
+<article class="bb-article-featured">
+<a href="/blog/how-we-build-house-21-days" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6967a154e66180476a7b9111_Factory%20Nest%20v1.jpg" alt="BIOBUILDS Produktionshalle" class="bb-article-card-img">
+</a>
+<div>
+<a href="/blog/how-we-build-house-21-days" class="bb-article-card">
+<span class="bb-article-card-category">Prozess</span>
+<h3 class="bb-article-card-title">Wie wir ein Haus in 21 Tagen bauen</h3>
+<p class="bb-article-card-excerpt">Ein Blick in den BIOBUILDS Fertigungsprozess. Vom Holzrahmen bis zur wetterfesten Hülle in drei Wochen, mit Passivhaus-Qualität in jedem Schritt.</p>
+<span class="bb-article-card-meta">15 Min. Lesezeit</span>
+</a>
+</div>
+</article>
+<!-- Article 2 -->
+<article>
+<a href="/blog/modular-vs-traditional-construction" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6943d15f5005539c7777d49c_1ec95e4bb089797a711bddedc4a69702_BIOBUILDS%20Prefab%20factory.avif" alt="BIOBUILDS Fertigbau-Produktion" class="bb-article-card-img">
+<span class="bb-article-card-category">Vergleich</span>
+<h3 class="bb-article-card-title">Modulbau vs. klassischer Bau: Der komplette Vergleich</h3>
+<p class="bb-article-card-excerpt">Qualität, Kosten, Zeit und Umweltwirkung im Vergleich. Warum Fertigung in der Halle bessere Gebäude schneller liefert.</p>
+<span class="bb-article-card-meta">13 Min. Lesezeit</span>
+</a>
+</article>
+<!-- Article 3 -->
+<article>
+<a href="/blog/factory-to-land-48-hours" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/695f64d1b46f8a261d622cdb_95m2%20Delivery.avif" alt="Anlieferung eines Modulhauses" class="bb-article-card-img">
+<span class="bb-article-card-category">Logistik</span>
+<h3 class="bb-article-card-title">Von der Produktion aufs Grundstück in 48 Stunden</h3>
+<p class="bb-article-card-excerpt">Anlieferung und Montage verständlich erklärt. Transport, Kranabläufe und was am Aufstelltage passiert.</p>
+<span class="bb-article-card-meta">9 Min. Lesezeit</span>
+</a>
+</article>
+<!-- Article 4 -->
+<article>
+<a href="/blog/modular-home-cost-2026" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6979d5fdb659f042daf7fc57_Modular%20Factory%20v1.avif" alt="Innenansicht einer Modulbau-Fertigung" class="bb-article-card-img">
+<span class="bb-article-card-category">Kosten</span>
+<h3 class="bb-article-card-title">Was kostet ein Modulhaus 2026?</h3>
+<p class="bb-article-card-excerpt">Komplette Preisübersicht für Premium-Modulhäuser in Europa. Vergleiche Kosten von BIOBUILDS, Huf Haus, WeberHaus und mehr.</p>
+<span class="bb-article-card-meta">12 Min. Lesezeit</span>
+</a>
+</article>
+</div>
+</div>
+</section>
+
+<!-- Timber-Frame Section -->
+<section id="timber-frame" class="bb-pillar-section">
+<div class="bb-container">
+<header class="bb-pillar-header">
+<span class="bb-pillar-label">Pillar 03</span>
+<h2 class="bb-pillar-title">Holzrahmenbau</h2>
+<p class="bb-pillar-description">Warum Holz Stahl und Beton in vielen Punkten übertrifft. Die Wissenschaft hinter Holzbau, Fakten zum Brandschutz und Vorteile für die Nachhaltigkeit.</p>
+</header>
+<div class="bb-article-grid">
+<!-- Featured Article -->
+<article class="bb-article-featured">
+<a href="/blog/timber-frame-safety-sustainability" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/69303cdf299025f5b7e0e219_95%20Wall%20Section.avif" alt="Detail eines Holz-Wandaufbaus" class="bb-article-card-img">
+</a>
+<div>
+<a href="/blog/timber-frame-safety-sustainability" class="bb-article-card">
+<span class="bb-article-card-category">Leitfaden</span>
+<h3 class="bb-article-card-title">Holzrahmenhäuser: Sicherheit, Nachhaltigkeit und die Wahrheit über Holz</h3>
+<p class="bb-article-card-excerpt">Brandschutzfragen klären, Umweltwirkung im Vergleich zu Beton und Stahl einordnen und verstehen, warum Holzbau die Zukunft ist.</p>
+<span class="bb-article-card-meta">14 Min. Lesezeit</span>
+</a>
+</div>
+</article>
+<!-- Article 2 -->
+<article>
+<a href="/blog/timber-frame-vs-clt" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6968da51ff4c28f02e78a013_hand%20on%20wood%20fiber%20insulation%20of%20passive%20house%2C%20sustainable%20home.avif" alt="Holzfaser-Dämmstoff" class="bb-article-card-img">
+<span class="bb-article-card-category">Vergleich</span>
+<h3 class="bb-article-card-title">Holzrahmenbau vs. CLT: Was ist die bessere Wahl?</h3>
+<p class="bb-article-card-excerpt">Vergleich von Holzrahmenbau und Brettsperrholz (CLT). Kosten, Leistung, Nachhaltigkeit und wann welches System sinnvoll ist.</p>
+<span class="bb-article-card-meta">11 Min. Lesezeit</span>
+</a>
+</article>
+<!-- Article 3 -->
+<article>
+<a href="/blog/what-makes-home-sustainable" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/68945d457d7925a298ae8ea3_Modular%20Window%20Up.avif" alt="Detail eines Modulfensters" class="bb-article-card-img">
+<span class="bb-article-card-category">Nachhaltigkeit</span>
+<h3 class="bb-article-card-title">Was macht ein Haus wirklich nachhaltig?</h3>
+<p class="bb-article-card-excerpt">Greenwashing vermeiden und echte Nachhaltigkeit verstehen: graue Energie, Materialwahl, Energieeffizienz und die Realität von Zertifizierungen.</p>
+<span class="bb-article-card-meta">13 Min. Lesezeit</span>
+</a>
+</article>
+</div>
+</div>
+</section>
+
+<!-- Prefab Section -->
+<section id="prefab" class="bb-pillar-section">
+<div class="bb-container">
+<header class="bb-pillar-header">
+<span class="bb-pillar-label">Pillar 04</span>
+<h2 class="bb-pillar-title">Fertighäuser</h2>
+<p class="bb-pillar-description">Die moderne Realität des Fertigbaus. Kosten, Zeitpläne, Qualitätsmythen und was beim Kauf eines Fertighauses wirklich zu erwarten ist.</p>
+</header>
+<div class="bb-article-grid">
+<!-- Featured Article -->
+<article class="bb-article-featured">
+<a href="/blog/prefab-homes-price-speed-truth" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/6930444a61c52c03dbe6ee0e_48%20CATALOG.avif" alt="48m2 Fertighaus" class="bb-article-card-img">
+</a>
+<div>
+<a href="/blog/prefab-homes-price-speed-truth" class="bb-article-card">
+<span class="bb-article-card-category">Leitfaden</span>
+<h3 class="bb-article-card-title">Fertighäuser: Preis, Tempo und was dir niemand sagt</h3>
+<p class="bb-article-card-excerpt">Die echten Kosten von Fertighäusern 2026. Plane 30–40% über dem Basispreis für Gesamtkosten. Versteckte Posten, die viele überraschen.</p>
+<span class="bb-article-card-meta">14 Min. Lesezeit</span>
+</a>
+</div>
+</article>
+<!-- Article 2 -->
+<article>
+<a href="/blog/prefab-vs-traditional-pros-cons" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/682899b1e38e7dc939c87e26_402f6d25cc6933964aae3c17317cb4b9_24m2%20Retreat%20Ria.avif" alt="24m2 Fertigbau-Retreat" class="bb-article-card-img">
+<span class="bb-article-card-category">Vergleich</span>
+<h3 class="bb-article-card-title">Fertighaus vs. Massivhaus: Vor- und Nachteile</h3>
+<p class="bb-article-card-excerpt">Ehrlicher Vergleich von Fertigbau und klassischem Baustellenbau. Qualität, Individualisierung, Wiederverkaufswert und Gesamtkosten.</p>
+<span class="bb-article-card-meta">12 Min. Lesezeit</span>
+</a>
+</article>
+<!-- Article 3 -->
+<article>
+<a href="/blog/prefab-home-myths-truth" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/697322fa2049fd48a46695b3_95m2%20Living%20Room%20Kid%20%2B%20Bichon.avif" alt="Modernes Fertighaus-Interieur mit Wohnzimmer" class="bb-article-card-img">
+<span class="bb-article-card-category">Mythen</span>
+<h3 class="bb-article-card-title">Fertighaus-Mythen und die Wahrheit</h3>
+<p class="bb-article-card-excerpt">Häufige Irrtümer zu Qualität, Haltbarkeit, Individualisierung und Wert. Was Studien und Praxis wirklich zeigen.</p>
+<span class="bb-article-card-meta">10 Min. Lesezeit</span>
+</a>
+</article>
+<!-- Article 4 -->
+<article>
+<a href="/blog/prefab-home-construction-timeline" class="bb-article-card">
+<img src="https://cdn.prod.website-files.com/6801f60a2febd7da21a30b43/689c57608799f38f24a1903e_48m2%20Constanta.avif" alt="48m2 Fertighaus in Constanta" class="bb-article-card-img">
+<span class="bb-article-card-category">Zeitplan</span>
+<h3 class="bb-article-card-title">Wie lange dauert es, ein Fertighaus zu bauen?</h3>
+<p class="bb-article-card-excerpt">Kompletter Ablauf Schritt für Schritt. Von Planung bis Einzug: Was in jeder Phase des Fertigbaus passiert.</p>
+<span class="bb-article-card-meta">11 Min. Lesezeit</span>
+</a>
+</article>
+</div>
+</div>
+</section>
+
+<!-- CTA Section -->
+<section class="bb-cta">
+<div class="bb-cta-inner">
+<h2 class="bb-cta-title">Bereit für Ihr Passivhaus?</h2>
+<p class="bb-cta-text">Fordern Sie ein individuelles Angebot an. Wir führen Sie durch Kosten, Zeitplan und Leistungsumfang in jeder Projektphase.</p>
+<a href="/contact" class="bb-cta-btn">
+Angebot anfordern
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 12h14M12 5l7 7-7 7"/>
+</svg>
+</a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bb-footer">
+<p>&copy; 2026 BIOBUILDS. Passivhaus-zertifizierte modulare Häuser.</p>
+</footer>
+
+<!-- Pillar Navigation Active State Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const sections = document.querySelectorAll('.bb-pillar-section');
+const navLinks = document.querySelectorAll('.bb-pillar-link');
+
+function setActiveLink() {
+let current = '';
+sections.forEach(section => {
+const sectionTop = section.offsetTop - 100;
+if (window.scrollY >= sectionTop) {
+current = section.getAttribute('id');
+}
+});
+navLinks.forEach(link => {
+link.classList.remove('active');
+if (link.getAttribute('href') === '#' + current) {
+link.classList.add('active');
+}
+});
+}
+
+window.addEventListener('scroll', setActiveLink);
+setActiveLink();
+
+// Smooth scroll for pillar links
+navLinks.forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href').substring(1);
+const targetSection = document.getElementById(targetId);
+if (targetSection) {
+const navHeight = document.querySelector('.bb-pillar-nav').offsetHeight;
+const targetPosition = targetSection.offsetTop - navHeight;
+window.scrollTo({
+top: targetPosition,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+</body>
+</html>

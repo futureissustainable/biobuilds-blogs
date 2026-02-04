@@ -19,6 +19,32 @@
 
 ---
 
+## MAIN (BIOBUILDS.COM Sources)
+
+Core Pages
+
+https://www.biobuilds.com/ — Homepage
+https://www.biobuilds.com/about — About
+https://www.biobuilds.com/story — Founder Story
+https://www.biobuilds.com/projects — Projects Gallery
+https://www.biobuilds.com/catalog — Catalog
+https://www.biobuilds.com/design — Configurator
+https://www.biobuilds.com/savings — Savings Calculator
+https://www.biobuilds.com/tourism — Tourism & Hospitality
+
+Principle Pages
+
+https://www.biobuilds.com/efficient — Passivhaus / Energy Efficiency
+https://www.biobuilds.com/healthy — Health & Organic Materials
+https://www.biobuilds.com/prefabricated — Factory Production
+
+Product Model Pages
+
+https://www.biobuilds.com/sanctuary
+https://www.biobuilds.com/serenity
+https://www.biobuilds.com/wanderlust
+https://www.biobuilds.com/nest
+
 ## Pillar 1 — Passivhaus
 
 ### Official Institutions & Databases

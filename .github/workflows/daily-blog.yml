@@ -1,0 +1,223 @@
+# =============================================================================
+# BIOBUILDS Daily Blog Post Generator — v3
+# =============================================================================
+#
+# Architecture:
+#   Claude ONLY generates the article file and saves it to disk.
+#   All git operations (branch, commit, push, PR) are deterministic
+#   workflow steps — the LLM never touches git or GitHub APIs.
+#
+# SETUP:
+#   1. Run `claude setup-token` locally → copy the token
+#   2. Repo → Settings → Secrets → Actions → New repository secret:
+#      Name:  CLAUDE_CODE_OAUTH_TOKEN
+#      Value: (paste token from step 1)
+#   3. Place this file at: .github/workflows/daily-blog.yml
+#   4. Merge to default branch (schedule only fires from default branch)
+#   5. Test: Actions tab → "Daily Blog Post" → Run workflow
+#
+# SECURITY:
+#   - Both actions pinned to full 40-char commit SHAs
+#   - Permissions: contents:write + pull-requests:write (minimum needed)
+#   - No shell debug (set -x), no env printing, no printenv
+#   - OAuth token = high-value credential → rotate every 60–90 days
+#   - Trigger: schedule + workflow_dispatch only (no PR/fork triggers)
+#   - Optional: store CLAUDE_CODE_OAUTH_TOKEN in a GitHub Environment
+#     with required reviewers for extra protection
+#
+# PINNED SHA UPDATE PROCESS:
+#   1. Go to the action's GitHub Releases page
+#   2. Find the release tag you want (e.g., v4.2.3)
+#   3. Click through to the tagged commit
+#   4. Copy the full 40-char SHA
+#   5. Replace below and update the # version comment
+# =============================================================================
+
+name: Daily Blog Post
+
+on:
+  schedule:
+    - cron: '0 2 * * *'           # 2:00 UTC ≈ 04:00 EET / 05:00 EEST
+  workflow_dispatch:                # manual trigger from Actions tab
+
+permissions:
+  contents: write                   # push branches + commits
+  pull-requests: write              # open PRs via gh CLI
+
+jobs:
+  write-blog-post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30             # hard cap — prevents runaway usage
+
+    env:
+      # run_id is unique per workflow execution → no branch collisions
+      BRANCH_NAME: blog/auto-${{ github.run_id }}
+
+    steps:
+      # ─── 1. Checkout ──────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.repository.default_branch }}
+
+      # ─── 2. Create working branch ─────────────────────────────────────
+      - name: Create branch
+        run: git checkout -b "$BRANCH_NAME"
+
+      # ─── 3. Claude generates the blog post (content only) ─────────────
+      #
+      # Pinned to 01e756b (Jan 29 2026, Agent SDK 0.2.25).
+      # The v1 tag currently points to SDK 0.2.27+ which crashes on init.
+      # Tracked: https://github.com/anthropics/claude-code-action/issues/892
+      # When resolved, update this SHA to the fix commit.
+      #
+      - name: Generate blog post
+        uses: anthropics/claude-code-action@01e756b34ef7a1447e9508f674143b07d20c2631  # pre-0.2.27, see #892
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+
+          prompt: |
+            You are the BIOBUILDS blog content engine.
+            Your ONLY job: write ONE new blog post file and save it to disk.
+
+            ██  DO NOT run any git commands.
+            ██  DO NOT create branches, commits, or pull requests.
+            ██  The workflow handles all git operations after you finish.
+
+            ═══════════════════════════════════════════════════════════════
+            PHASE 1 — RECONNAISSANCE
+            ═══════════════════════════════════════════════════════════════
+
+            1. Explore the repo structure. Find:
+               - The blog/articles directory (wherever blog posts live)
+               - The SEO.md file (keyword strategy + content rules)
+               - The SOURCES.md file (200+ verified reference links)
+               - The CSS file(s) used by blog posts
+
+            2. Read SEO.md fully. Understand the 4 content pillars,
+               target keywords, tone rules, language requirements.
+
+            3. Read SOURCES.md. This is your research database.
+               Every statistic you cite MUST trace to a source here
+               or from fresh web research.
+
+            4. Count published articles per pillar/category.
+               Pick the pillar with the FEWEST articles.
+
+            5. Read 2-3 existing articles from that pillar.
+               Match exactly: file format, frontmatter, heading hierarchy,
+               tone, length, image patterns, CTA patterns, internal links.
+
+            6. Read the CSS file(s). Use ONLY existing classes. Never invent.
+
+            ═══════════════════════════════════════════════════════════════
+            PHASE 2 — RESEARCH
+            ═══════════════════════════════════════════════════════════════
+
+            7. From SOURCES.md, pick 3-5 sources relevant to your topic.
+            8. Use WebFetch to read those pages. Extract real data.
+            9. Use WebSearch for 1-2 fresh sources (2024-2025 data).
+            10. Cross-reference statistics across sources.
+
+            ═══════════════════════════════════════════════════════════════
+            PHASE 3 — WRITE
+            ═══════════════════════════════════════════════════════════════
+
+            11. Pick a topic within the target pillar that:
+                - Is NOT already covered by an existing article
+                - Targets a keyword from SEO.md
+                - Has enough source material
+
+            12. Write the article:
+                - Exact same file format as existing posts
+                - Same frontmatter/metadata structure
+                - Same HTML patterns and CSS classes
+                - Same approximate length
+                - Same language as other articles in that pillar
+                - Meta description optimized for target keyword
+                - Internal links to 2-3 existing BIOBUILDS posts
+                - Every statistic backed by a source
+
+            13. Save the file in the correct blog directory using
+                the existing filename convention.
+
+            ═══════════════════════════════════════════════════════════════
+            RULES
+            ═══════════════════════════════════════════════════════════════
+            - NEVER run git commands (no git add, commit, push, branch)
+            - NEVER create pull requests
+            - NEVER invent statistics
+            - NEVER use CSS classes that don't exist in the stylesheet
+            - NEVER duplicate a topic already covered
+            - If something is wrong (missing files, unclear structure),
+              describe the problem clearly and STOP.
+
+          claude_args: |
+            --max-turns 25
+            --model claude-sonnet-4-5-20250929
+
+      # ─── 4. Detect new/changed files ──────────────────────────────────
+      # git status --porcelain catches untracked files that git diff misses
+      - name: Check for changes
+        id: changes
+        run: |
+          STATUS="$(git status --porcelain)"
+          if [ -z "$STATUS" ]; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::No new files detected — Claude may have hit an error. Check the step above."
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "✅ New content detected:"
+            echo "$STATUS"
+          fi
+
+      # ─── 5. Commit and push ───────────────────────────────────────────
+      - name: Commit and push
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "blog: auto-generated post $(date +%Y-%m-%d)"
+          git push origin "$BRANCH_NAME"
+
+      # ─── 6. Create PR (idempotent — skips if PR already exists) ───────
+      - name: Create Pull Request
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Ensure gh is authenticated
+          gh auth status || echo "$GITHUB_TOKEN" | gh auth login --with-token
+
+          # Check if a PR already exists for this branch
+          EXISTING_PR=$(gh pr list --head "$BRANCH_NAME" --json number --jq '.[0].number' 2>/dev/null || true)
+
+          if [ -n "$EXISTING_PR" ]; then
+            echo "ℹ️ PR #$EXISTING_PR already exists for branch $BRANCH_NAME — skipping creation."
+            exit 0
+          fi
+
+          # Build a clean file list from the commit
+          FILE_LIST=$(git show --name-only --pretty="" HEAD)
+
+          gh pr create \
+            --title "📝 Blog: auto-generated $(date +%Y-%m-%d)" \
+            --body "$(cat <<EOF
+          ## Auto-generated blog post
+
+          **Branch:** \`${BRANCH_NAME}\`
+          **Generated:** $(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+          ### Changed files
+          \`\`\`
+          ${FILE_LIST}
+          \`\`\`
+
+          ---
+          *Review before merging. Generated by the BIOBUILDS blog engine.*
+          EOF
+          )" \
+            --base "${{ github.event.repository.default_branch }}" \
+            --head "$BRANCH_NAME"

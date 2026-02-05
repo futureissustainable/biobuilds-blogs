@@ -1,0 +1,128 @@
+# =============================================================================
+# One-Time Migration: Push all existing articles to Webflow CMS
+# =============================================================================
+# Run this ONCE via Actions tab → "Migrate to Webflow" → Run workflow
+# After migration, delete this file or leave it (won't run again on schedule)
+# =============================================================================
+
+name: Migrate to Webflow
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Migrate all articles to Webflow CMS
+        env:
+          WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
+          WEBFLOW_SITE_ID: ${{ secrets.WEBFLOW_SITE_ID }}
+          WEBFLOW_COLLECTION_ID: ${{ secrets.WEBFLOW_COLLECTION_ID }}
+        run: |
+          echo "Starting migration of all articles to Webflow CMS..."
+
+          SUCCESS=0
+          FAILED=0
+
+          for file in EN/*.html DE/*.html RO/*.html; do
+            # Skip if no files match
+            [ -f "$file" ] || continue
+
+            # Skip blog.html index files
+            [[ "$file" == *"/blog.html" ]] && continue
+
+            echo "Processing: $file"
+
+            # Extract info from filename: "1.0 EN what-is-passive-house.html"
+            FILENAME=$(basename "$file" .html)
+
+            # Extract language (EN, DE, or RO)
+            LANG=$(echo "$FILENAME" | grep -oE ' (EN|DE|RO) ' | tr -d ' ')
+
+            # Extract pillar number and map to name
+            PILLAR_NUM=$(echo "$FILENAME" | grep -oE '^[0-9]+' | head -1)
+            case "$PILLAR_NUM" in
+              1) PILLAR="passivhaus" ;;
+              2) PILLAR="modular" ;;
+              3) PILLAR="timber" ;;
+              4) PILLAR="prefab" ;;
+              *) PILLAR="general" ;;
+            esac
+
+            # Extract slug (everything after language code)
+            SLUG=$(echo "$FILENAME" | sed -E 's/^[0-9.]+ (EN|DE|RO) //')
+
+            # Create unique slug with language suffix
+            FULL_SLUG="${SLUG}-${LANG,,}"
+
+            # Extract title from HTML <title> tag
+            TITLE=$(grep -oP '(?<=<title>)[^<|]+' "$file" | head -1 | sed 's/^ *//;s/ *$//')
+            if [ -z "$TITLE" ]; then
+              TITLE="$FILENAME"
+            fi
+
+            # Read full HTML content
+            CONTENT=$(cat "$file")
+
+            # Create JSON payload (escape content properly)
+            PAYLOAD=$(jq -n \
+              --arg name "$TITLE" \
+              --arg slug "$FULL_SLUG" \
+              --arg lang "$LANG" \
+              --arg pillar "$PILLAR" \
+              --arg html "$CONTENT" \
+              '{
+                "isArchived": false,
+                "isDraft": true,
+                "fieldData": {
+                  "name": $name,
+                  "slug": $slug,
+                  "language": $lang,
+                  "pillar": $pillar,
+                  "html-content": $html
+                }
+              }')
+
+            # POST to Webflow CMS API
+            RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+              "https://api.webflow.com/v2/collections/${WEBFLOW_COLLECTION_ID}/items" \
+              -H "Authorization: Bearer ${WEBFLOW_API_TOKEN}" \
+              -H "Content-Type: application/json" \
+              -d "$PAYLOAD")
+
+            HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+            BODY=$(echo "$RESPONSE" | sed '$d')
+
+            if [ "$HTTP_CODE" -eq 200 ] || [ "$HTTP_CODE" -eq 201 ] || [ "$HTTP_CODE" -eq 202 ]; then
+              echo "  -> Created: $FULL_SLUG"
+              SUCCESS=$((SUCCESS + 1))
+            else
+              echo "  -> FAILED ($HTTP_CODE): $BODY"
+              FAILED=$((FAILED + 1))
+            fi
+
+            # Rate limiting: Webflow allows 60 requests/min
+            sleep 1
+          done
+
+          echo ""
+          echo "======================================"
+          echo "Migration complete!"
+          echo "Success: $SUCCESS"
+          echo "Failed: $FAILED"
+          echo "======================================"
+          echo ""
+          echo "Next steps:"
+          echo "1. Go to Webflow Designer"
+          echo "2. Review CMS items (all created as drafts)"
+          echo "3. Publish when ready"
+          echo "4. Set up 301 redirects from old URLs"
+          echo "5. Delete old static pages"

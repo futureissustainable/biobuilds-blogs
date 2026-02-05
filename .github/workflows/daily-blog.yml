@@ -308,7 +308,7 @@ jobs:
             echo "::warning::No new files detected"
           else
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
-            echo "✅ New content detected:"
+            echo "New content detected:"
             echo "$STATUS"
           fi
 

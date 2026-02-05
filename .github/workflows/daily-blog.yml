@@ -82,21 +82,24 @@ jobs:
             PHASE 2 — RESEARCH
             ═══════════════════════════════════════════════════════════════
 
-            8. Pick 3-5 sources from SOURCES.md relevant to your topic
+            8. Start with SOURCES.md — pick 3-5 relevant sources
             9. Use WebFetch to extract real data from those sources
-            10. Use WebSearch for 1-2 fresh 2025-2026 sources
-            11. Cross-reference statistics across sources
+            10. Use WebSearch for additional sources (2025-2026 data welcome)
+            11. You CAN use sources beyond SOURCES.md, but they MUST be
+                high-authority: .gov, .edu, .org, peer-reviewed journals,
+                PHI, EU Commission, Wikipedia, McKinsey, industry bodies
+            12. Cross-reference statistics across multiple sources
 
             ═══════════════════════════════════════════════════════════════
             PHASE 3 — WRITE ENGLISH VERSION
             ═══════════════════════════════════════════════════════════════
 
-            12. Pick a topic that:
+            13. Pick a topic that:
                 - Is NOT already covered by existing articles
                 - Targets a keyword from SEO.md
                 - Has sufficient source material
 
-            13. Write the article in ENGLISH:
+            14. Write the article in ENGLISH:
                 - Match existing article format exactly
                 - Include Schema.org JSON-LD markup
                 - Use only bb-* CSS classes from blog-styles.css
@@ -104,7 +107,7 @@ jobs:
                 - Every statistic backed by a source
                 - International/EU perspective (can mention all markets)
 
-            14. Save to EN/ directory using naming convention:
+            15. Save to EN/ directory using naming convention:
                 {Pillar}.{SubArticle} EN {url-slug}.html
                 Example: 3.3 EN timber-frame-insulation-guide.html
 

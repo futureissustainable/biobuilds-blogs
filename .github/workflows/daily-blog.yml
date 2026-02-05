@@ -338,22 +338,12 @@ jobs:
 
           FILE_LIST=$(git show --name-only --pretty="" HEAD)
 
+          PR_BODY="Auto-generated blog posts in 3 languages (EN, DE, RO).
+
+          Files: ${FILE_LIST}"
+
           gh pr create \
             --title "Blog: $(date +%Y-%m-%d) [EN/DE/RO]" \
-            --body "## Auto-generated blog posts (3 languages)
-
-**Branch:** ${BRANCH_NAME}
-**Generated:** $(date -u +%Y-%m-%dT%H:%M:%SZ)
-
-### Languages
-- EN: English (international)
-- DE: German (DACH market)
-- RO: Romanian (local market)
-
-### Changed files
-${FILE_LIST}
-
----
-*Review all 3 versions before merging.*" \
+            --body "$PR_BODY" \
             --base "${{ github.event.repository.default_branch }}" \
             --head "$BRANCH_NAME"

@@ -106,9 +106,7 @@ jobs:
 
             14. Save to EN/ directory using naming convention:
                 {Pillar}.{SubArticle} EN {url-slug}.html
-
-            15. ALSO create a small metadata file at topic-of-day.json:
-                {"topic": "brief topic description", "pillar": "3", "slug": "the-url-slug"}
+                Example: 3.3 EN timber-frame-insulation-guide.html
 
             ═══════════════════════════════════════════════════════════════
             RULES
@@ -130,7 +128,6 @@ jobs:
             EN/
             DE/
             RO/
-            topic-of-day.json
           retention-days: 1
 
   # ═══════════════════════════════════════════════════════════════════════════
@@ -168,18 +165,22 @@ jobs:
             ██  DO NOT run any git commands.
 
             STEPS:
-            1. Read topic-of-day.json → find today's topic
-            2. Read the NEW English article in EN/
-            3. Read MARKETS.md → follow DACH market instructions exactly
+            1. List files in EN/ — find the NEWEST .html file (today's article)
+            2. Read that EN article completely
+            3. Read MARKETS.md → follow DACH market section exactly
             4. Read CLAUDE.md → formatting requirements
-            5. Read 2-3 existing DE articles → match tone/style
+            5. Read 2-3 existing DE articles → match German tone/style
             6. Translate and ADAPT the EN article per MARKETS.md
-            7. Save to DE/ using: {Pillar}.{SubArticle} DE {slug}.html
+            7. Save to DE/ with SAME pillar.subarticle number as EN:
+               Example: EN has "3.3 EN timber-insulation.html"
+                     → Save as "3.3 DE daemmung-holzrahmen.html"
 
             RULES:
+            - Match EN article's pillar and subarticle number exactly
+            - Translate the slug to German
             - Follow MARKETS.md localization requirements
             - Write natural German, not literal translation
-            - Keep same structure, update inLanguage to "de"
+            - Update inLanguage to "de" in Schema.org
             - NEVER run git commands
 
           claude_args: |
@@ -194,7 +195,6 @@ jobs:
             EN/
             DE/
             RO/
-            topic-of-day.json
           retention-days: 1
 
   # ═══════════════════════════════════════════════════════════════════════════
@@ -232,18 +232,22 @@ jobs:
             ██  DO NOT run any git commands.
 
             STEPS:
-            1. Read topic-of-day.json → find today's topic
-            2. Read the NEW English article in EN/
-            3. Read MARKETS.md → follow Romania market instructions exactly
+            1. List files in EN/ — find the NEWEST .html file (today's article)
+            2. Read that EN article completely
+            3. Read MARKETS.md → follow Romania market section exactly
             4. Read CLAUDE.md → formatting requirements
-            5. Read 2-3 existing RO articles → match tone/style
+            5. Read 2-3 existing RO articles → match Romanian tone/style
             6. Translate and ADAPT the EN article per MARKETS.md
-            7. Save to RO/ using: {Pillar}.{SubArticle} RO {slug}.html
+            7. Save to RO/ with SAME pillar.subarticle number as EN:
+               Example: EN has "3.3 EN timber-insulation.html"
+                     → Save as "3.3 RO izolatie-casa-lemn.html"
 
             RULES:
+            - Match EN article's pillar and subarticle number exactly
+            - Translate the slug to Romanian
             - Follow MARKETS.md localization requirements
             - Write natural Romanian, not literal translation
-            - Keep same structure, update inLanguage to "ro"
+            - Update inLanguage to "ro" in Schema.org
             - NEVER run git commands
 
           claude_args: |

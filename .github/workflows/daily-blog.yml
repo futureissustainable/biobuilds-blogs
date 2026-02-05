@@ -163,68 +163,24 @@ jobs:
 
           prompt: |
             You are the BIOBUILDS blog content engine.
-            Your job: write the GERMAN version of today's blog post, adapted for DACH audience.
+            Write the GERMAN version of today's blog post for DACH audience.
 
             ██  DO NOT run any git commands.
-            ██  DO NOT create branches, commits, or pull requests.
 
-            ═══════════════════════════════════════════════════════════════
-            PHASE 1 — FIND TODAY'S TOPIC
-            ═══════════════════════════════════════════════════════════════
+            STEPS:
+            1. Read topic-of-day.json → find today's topic
+            2. Read the NEW English article in EN/
+            3. Read MARKETS.md → follow DACH market instructions exactly
+            4. Read CLAUDE.md → formatting requirements
+            5. Read 2-3 existing DE articles → match tone/style
+            6. Translate and ADAPT the EN article per MARKETS.md
+            7. Save to DE/ using: {Pillar}.{SubArticle} DE {slug}.html
 
-            1. Read topic-of-day.json to find today's topic and pillar
-            2. Find and read the NEW English article in EN/ directory
-               (look for the most recently created file matching the topic)
-            3. Read CLAUDE.md for formatting requirements
-            4. Read 2-3 existing DE articles to match German tone/style
-            5. Read blog-styles.css for CSS classes
-
-            ═══════════════════════════════════════════════════════════════
-            PHASE 2 — ADAPT FOR DACH AUDIENCE
-            ═══════════════════════════════════════════════════════════════
-
-            6. Translate and ADAPT the English article for German-speaking
-               audience in Germany and Austria:
-
-               LOCALIZATION REQUIREMENTS:
-               - Write in fluent, professional German (not machine translation)
-               - Focus on Germany and Austria markets ONLY
-               - DO NOT mention Romania, Bulgaria, or Eastern European markets
-               - Use German/Austrian regulations (GEG, KfW, OIB)
-               - Reference German/Austrian incentive programs
-               - Use € pricing with German/Austrian market context
-               - Cite German-language sources where available (.de, .at domains)
-               - Adapt examples to German/Austrian building practices
-               - Use formal "Sie" address throughout
-
-               KEEP THE SAME:
-               - Overall article structure and sections
-               - Core technical content and statistics
-               - BIOBUILDS value propositions
-               - Schema.org markup structure (update inLanguage to "de")
-               - CSS classes (bb-* classes)
-
-            ═══════════════════════════════════════════════════════════════
-            PHASE 3 — WRITE AND SAVE
-            ═══════════════════════════════════════════════════════════════
-
-            7. Write the complete German article:
-                - Same pillar number as EN version
-                - German title and meta description
-                - All content in German
-                - 2,000-3,000 words
-                - Update all Schema.org to inLanguage: "de"
-
-            8. Save to DE/ directory using naming convention:
-                {Pillar}.{SubArticle} DE {german-url-slug}.html
-
-            ═══════════════════════════════════════════════════════════════
-            RULES
-            ═══════════════════════════════════════════════════════════════
-            - NEVER run git commands
-            - NEVER mention Romania or Eastern European context
-            - NEVER use CSS classes not in blog-styles.css
+            RULES:
+            - Follow MARKETS.md localization requirements
             - Write natural German, not literal translation
+            - Keep same structure, update inLanguage to "de"
+            - NEVER run git commands
 
           claude_args: |
             --max-turns 25
@@ -271,67 +227,24 @@ jobs:
 
           prompt: |
             You are the BIOBUILDS blog content engine.
-            Your job: write the ROMANIAN version of today's blog post, adapted for Romanian audience.
+            Write the ROMANIAN version of today's blog post for Romanian audience.
 
             ██  DO NOT run any git commands.
-            ██  DO NOT create branches, commits, or pull requests.
 
-            ═══════════════════════════════════════════════════════════════
-            PHASE 1 — FIND TODAY'S TOPIC
-            ═══════════════════════════════════════════════════════════════
+            STEPS:
+            1. Read topic-of-day.json → find today's topic
+            2. Read the NEW English article in EN/
+            3. Read MARKETS.md → follow Romania market instructions exactly
+            4. Read CLAUDE.md → formatting requirements
+            5. Read 2-3 existing RO articles → match tone/style
+            6. Translate and ADAPT the EN article per MARKETS.md
+            7. Save to RO/ using: {Pillar}.{SubArticle} RO {slug}.html
 
-            1. Read topic-of-day.json to find today's topic and pillar
-            2. Find and read the NEW English article in EN/ directory
-            3. Read CLAUDE.md for formatting requirements
-            4. Read 2-3 existing RO articles to match Romanian tone/style
-            5. Read blog-styles.css for CSS classes
-
-            ═══════════════════════════════════════════════════════════════
-            PHASE 2 — ADAPT FOR ROMANIAN AUDIENCE
-            ═══════════════════════════════════════════════════════════════
-
-            6. Translate and ADAPT the English article for Romanian audience:
-
-               LOCALIZATION REQUIREMENTS:
-               - Write in fluent, professional Romanian
-               - Focus on Romania market primarily
-               - Can reference EU context and standards
-               - Use Romanian regulations and building codes
-               - Reference Romanian incentive programs (Casa Verde, etc.)
-               - Use € pricing but with Romanian market context
-               - Compare to Romanian average construction costs
-               - Cite Romanian sources where available (.ro domains)
-               - Adapt examples to Romanian building practices
-               - Mention BIOBUILDS factory is in Romania (local advantage)
-
-               KEEP THE SAME:
-               - Overall article structure and sections
-               - Core technical content and statistics
-               - BIOBUILDS value propositions
-               - Schema.org markup structure (update inLanguage to "ro")
-               - CSS classes (bb-* classes)
-
-            ═══════════════════════════════════════════════════════════════
-            PHASE 3 — WRITE AND SAVE
-            ═══════════════════════════════════════════════════════════════
-
-            7. Write the complete Romanian article:
-                - Same pillar number as EN version
-                - Romanian title and meta description
-                - All content in Romanian
-                - 2,000-3,000 words
-                - Update all Schema.org to inLanguage: "ro"
-
-            8. Save to RO/ directory using naming convention:
-                {Pillar}.{SubArticle} RO {romanian-url-slug}.html
-
-            ═══════════════════════════════════════════════════════════════
-            RULES
-            ═══════════════════════════════════════════════════════════════
-            - NEVER run git commands
-            - NEVER use CSS classes not in blog-styles.css
+            RULES:
+            - Follow MARKETS.md localization requirements
             - Write natural Romanian, not literal translation
-            - Emphasize local factory advantage where relevant
+            - Keep same structure, update inLanguage to "ro"
+            - NEVER run git commands
 
           claude_args: |
             --max-turns 25

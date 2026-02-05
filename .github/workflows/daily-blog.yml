@@ -43,6 +43,7 @@ on:
 permissions:
   contents: write                   # push branches + commits
   pull-requests: write              # open PRs via gh CLI
+  id-token: write                   # required for OIDC authentication
 
 jobs:
   write-blog-post:

@@ -1,5 +1,5 @@
 # =============================================================================
-# BIOBUILDS Daily Blog Post Generator — v4.1 (Multi-language)
+# BIOBUILDS Daily Blog Post Generator — v4.2 (Multi-language)
 # =============================================================================
 #
 # Architecture:
@@ -57,7 +57,6 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          allowed_tools: "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
           prompt: |
             You are the BIOBUILDS blog content engine.
@@ -122,6 +121,7 @@ jobs:
           claude_args: |
             --max-turns 25
             --model claude-sonnet-4-5-20250929
+            --allowedTools Read,Write,Edit,Glob,Grep,WebFetch,WebSearch
 
       - name: Upload EN workspace
         uses: actions/upload-artifact@v4
@@ -159,7 +159,6 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          allowed_tools: "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
           prompt: |
             You are the BIOBUILDS blog content engine.
@@ -189,6 +188,7 @@ jobs:
           claude_args: |
             --max-turns 25
             --model claude-sonnet-4-5-20250929
+            --allowedTools Read,Write,Edit,Glob,Grep,WebFetch,WebSearch
 
       - name: Upload DE workspace
         uses: actions/upload-artifact@v4
@@ -226,7 +226,6 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          allowed_tools: "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
           prompt: |
             You are the BIOBUILDS blog content engine.
@@ -256,6 +255,7 @@ jobs:
           claude_args: |
             --max-turns 25
             --model claude-sonnet-4-5-20250929
+            --allowedTools Read,Write,Edit,Glob,Grep,WebFetch,WebSearch
 
       - name: Upload final workspace
         uses: actions/upload-artifact@v4

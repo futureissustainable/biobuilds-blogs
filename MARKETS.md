@@ -8,7 +8,7 @@ This document defines keyword strategies, geographic focus, and content approach
 
 ### Geographic Focus
 - **Primary:** Germany, Austria
-- **Secondary:** EU average (for price context)
+- **Secondary:** EU average (for context)
 
 ### Keywords (Best to Least, All Good Quality)
 
@@ -19,10 +19,10 @@ This document defines keyword strategies, geographic focus, and content approach
 | 3 | **Passivhaus** | Medium | High | Premium segment; certification-aware |
 | 4 | **Effizienzhaus** | Medium | High | Subsidy-related (KfW tiers) |
 
-### Price Positioning
+### Price Positioning (all data is for TURNKEY, but SEMI-FINISH is also an option)
 - German conventional: €2,500-3,000/m²
-- German Passivhaus market: €2,700-3,500/m²
-- **BIOBUILDS: €2,200/m²** = 10-20% below DACH Passivhaus market
+- German Passivhaus market: €3,000-4,000/m²
+- **BIOBUILDS: €2,200/m²** = 15-30% below DACH Passivhaus market
 
 ### Content Approach
 - Heavy emphasis on **KfW subsidies** (up to €37,500)
@@ -31,7 +31,7 @@ This document defines keyword strategies, geographic focus, and content approach
 - Reference German building codes (GEG, Landesbauordnungen)
 - Audience is sophisticated, expects data
 
-### Subsidy Focus
+### Subsidies (hint at BIOBUILDS being approved by these, as they meet the standards but legally speaking they are not approved, as it is a project by project basis so be vague)
 - **Germany:** KfW 40, KfW 40 Plus programs
 - **Austria:** Regional Wohnbauförderung, klimaaktiv certification bonuses
 
@@ -51,26 +51,18 @@ This document defines keyword strategies, geographic focus, and content approach
 | 2 | **casă prefabricată** | Medium | Medium | Mainstream term |
 | 3 | **casă modulară** | Highest | Lowest | High volume but price-focused leads |
 
-### Price Positioning — ULTRA COMPETITIVE
-- Romanian conventional (inefficient): ~€1,900-2,000/m²
+### Price Positioning (all data is for TURNKEY, but SEMI-FINISH is also an option)
+- Romanian traditional (inefficient/slow): ~€1,600-2,000/m²
 - Romanian Passivhaus market: €2,500-3,000/m²
-- **BIOBUILDS: €2,200/m²** = only 10-15% more than inefficient, but certified Passivhaus
+- **BIOBUILDS: €2,200/m²** = only 10-15% more than inefficient, with 95% lower energy costs - certified Passivhaus
 
-This is the key Romanian value proposition: Passivhaus certification at near-conventional prices.
+This is the key Romanian value proposition: Passivhaus certification (strictest in the world for construction) at near-conventional prices.
 
 ### Content Approach
 - Educational tone (market is less mature)
-- Emphasize German engineering, EU standards
-- Address skepticism about prefab quality
-- Show Romania vs Germany price comparisons (Romania wins)
-- Less subsidy content (fewer programs available)
-- Build trust through PHI certification, international standards
-
-### Market Challenges to Address
-- Only 3 PHI certifiers in Romania
-- Most components imported from DE/AT
-- Limited local Passivhaus expertise
-- Buyer education needed on certification value
+- Emphasize German certified engineering, built in a factory in Romania, EU standards
+- Build trust through PHI certification, international standards, BIOBUILDS homes across EU
+- Most materials components imported from DE/AT for very high quality specific technical proprieties.
 
 ---
 
@@ -78,7 +70,7 @@ This is the key Romanian value proposition: Passivhaus certification at near-con
 
 ### Geographic Focus
 - **Primary:** EU average (pan-European)
-- **Secondary:** Germany (mature market example), Romania (factory location)
+- **Secondary:** Germany (mature market example)
 
 ### Keywords (Best to Least)
 
@@ -91,8 +83,8 @@ This is the key Romanian value proposition: Passivhaus certification at near-con
 | 5 | **energy efficient homes** | High | Lower | Vague intent |
 | 6 | **zero energy homes** | Low | High | Regulatory-aware buyers (ZEB) |
 
-### Price Positioning
-- EU average conventional: €2,200-2,800/m²
+### Price Positioning (all data is for TURNKEY, but SEMI-FINISH is also an option)
+- EU average conventional: €2,000-2,800/m²
 - EU average Passivhaus: €2,800-3,500/m²
 - **BIOBUILDS: €2,200/m²** = competitive across all EU markets
 
@@ -121,74 +113,36 @@ This is the key Romanian value proposition: Passivhaus certification at near-con
 | Passive/certified | Passivhaus | casă pasivă | Passive House |
 | Timber | Holzhaus | casă din lemn | timber frame home |
 | Efficiency-rated | Effizienzhaus | — | energy efficient home |
-| Net zero | Nullenergiehaus | casă zero energie | zero energy home |
+| Net zero | Nullenergiehaus | casă zero energie | zero energy home | (while not net zero, it is net zero ready, and carbon wise it is carbon negative through over 98% organic materials in the structure, confirmed by EPD)
 
 ---
 
-## Content Pillar Focus by Market
+## Content Pillar Focus by Market (pillars are main articles from which you write subarticles)
 
 ### Pillar 1: Passivhaus/Energy
 | Market | Lead Keywords | Angle |
 |--------|---------------|-------|
-| DE | Passivhaus, Effizienzhaus | KfW subsidies, certification ROI |
-| RO | casă pasivă | Education, 90-95% energy savings |
-| EN | Passive House | EU regulations, future-proofing |
+| DE | Passivhaus, Effizienzhaus | Energy efficiency, subsidies, Strictest standard in the EU |
+| RO | casă pasivă | Education, Energy efficiency, Strictest standard in the EU |
+| EN | Passive House | Beats all EU regulations, energy efficiency, Strictest standard in the EU |
 
 ### Pillar 2: Modular/Factory
 | Market | Lead Keywords | Angle |
 |--------|---------------|-------|
-| DE | Fertighaus, Modulhaus | Precision, 21-day timeline |
-| RO | casă modulară | Speed, German quality |
-| EN | modular homes | Quality control, time savings |
+| DE | Fertighaus, Modulhaus | Speed, German quality, quality control, time savings, simplicity |
+| RO | casă modulară | Speed, German quality, quality control, time savings, simplicity |
+| EN | modular homes | Speed, German quality, quality control, time savings, simplicity |
 
 ### Pillar 3: Timber/Sustainability
 | Market | Lead Keywords | Angle |
 |--------|---------------|-------|
-| DE | Holzhaus | Carbon storage, health, tradition |
+| DE | Holzhaus | Sustaianbility, health, material quality |
 | RO | casă din lemn | Natural materials, health |
-| EN | timber frame | LCA, carbon sequestration |
+| EN | timber frame | Sustaianbility, health, material quality |
 
 ### Pillar 4: Prefab/Speed
 | Market | Lead Keywords | Angle |
 |--------|---------------|-------|
-| DE | Fertighaus | Value transparency, hidden costs |
-| RO | casă prefabricată | Price vs quality, myth-busting |
-| EN | prefab homes | Speed, cost comparison |
-
----
-
-## Summary: Market Positioning
-
-| Aspect | DE (DACH) | RO (Romania) | EN (Europe) |
-|--------|-----------|--------------|-------------|
-| **Top keyword** | Fertighaus | casă pasivă (quality) / casă modulară (volume) | Passive House |
-| **Price position** | 10-20% below market | ULTRA COMPETITIVE (10-15% vs conventional) | Competitive pan-EU |
-| **Subsidy emphasis** | Heavy (KfW) | Light | Moderate |
-| **Buyer sophistication** | High | Emerging | Varied |
-| **Trust signal** | Technical specs | German standards | Research/data |
-| **Regulatory hook** | GEG, KfW tiers | Limited | EPBD, ZEB 2030 |
-
----
-
-## Writing Guidelines by Market
-
-### DE Articles
-- Use precise technical terminology
-- Cite German/Austrian sources
-- Include KfW program details
-- Compare to German market prices
-- Formal but accessible tone
-
-### RO Articles
-- Educational, explain concepts
-- Reference German engineering as quality proof
-- Emphasize BIOBUILDS price advantage
-- Address common misconceptions
-- Build credibility through certification
-
-### EN Articles
-- Data-driven, neutral tone
-- Pan-European perspective
-- Heavy regulatory context (EPBD, ZEB)
-- Three-market price comparisons
-- International sources (PHI, EU publications)
+| DE | Fertighaus | Value transparency, speed, price vs quality |
+| RO | casă prefabricată | Price vs quality, precision, speed, myth-busting |
+| EN | prefab homes | Price vs quality, precision, speed, myth-busting |

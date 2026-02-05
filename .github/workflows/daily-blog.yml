@@ -85,9 +85,8 @@ jobs:
             8. Start with SOURCES.md — pick 3-5 relevant sources
             9. Use WebFetch to extract real data from those sources
             10. Use WebSearch for additional sources (2025-2026 data welcome)
-            11. You CAN use sources beyond SOURCES.md, but they MUST be
-                high-authority: .gov, .edu, .org, peer-reviewed journals,
-                PHI, EU Commission, Wikipedia, McKinsey, industry bodies
+            11. You CAN use sources beyond SOURCES.md — just ensure they're
+                high-authority (.gov, .edu, peer-reviewed, reputable orgs, etc.)
             12. Cross-reference statistics across multiple sources
 
             ═══════════════════════════════════════════════════════════════

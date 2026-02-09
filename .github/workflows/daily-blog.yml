@@ -1,9 +1,10 @@
 # =============================================================================
-# BIOBUILDS Daily Blog Post Generator — v4.6 (Multi-language)
+# BIOBUILDS Daily Blog Post Generator — v4.7 (3x Daily, Opus 4.6)
 # =============================================================================
 #
 # Architecture:
-#   Three sequential Claude runs produce the SAME topic adapted for each locale:
+#   Runs 3 times daily (1:00, 3:00, 5:00 UTC). Each run produces ONE topic
+#   adapted for three locales (3 articles per run, 9 articles per day):
 #   1. EN: Picks topic, writes English version (international audience)
 #   2. DE: Reads EN article, adapts for DACH (Germany/Austria focus)
 #   3. RO: Reads EN article, adapts for Romanian audience
@@ -29,7 +30,9 @@ name: Daily Blog Post
 
 on:
   schedule:
-    - cron: '0 2 * * *'           # 2:00 UTC ≈ 04:00 EET / 05:00 EEST
+    - cron: '0 1 * * *'           # 1:00 UTC — Run 1 of 3
+    - cron: '0 3 * * *'           # 3:00 UTC — Run 2 of 3
+    - cron: '0 5 * * *'           # 5:00 UTC — Run 3 of 3
   workflow_dispatch:                # manual trigger from Actions tab
 
 permissions:
@@ -125,7 +128,7 @@ jobs:
 
           claude_args: |
             --max-turns 25
-            --model claude-opus-4-5-20251101
+            --model claude-opus-4-6
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
       - name: Upload EN workspace
@@ -192,7 +195,7 @@ jobs:
 
           claude_args: |
             --max-turns 25
-            --model claude-opus-4-5-20251101
+            --model claude-opus-4-6
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
       - name: Upload DE workspace
@@ -259,7 +262,7 @@ jobs:
 
           claude_args: |
             --max-turns 25
-            --model claude-opus-4-5-20251101
+            --model claude-opus-4-6
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
       - name: Upload final workspace
@@ -318,7 +321,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "blog: auto-generated posts $(date +%Y-%m-%d) [EN/DE/RO]"
+          git commit -m "blog: auto-generated posts $(date +%Y-%m-%d) run-$(date +%H%M) [EN/DE/RO]"
           # Force push in case branch exists from a re-run
           git push --force-with-lease origin "$BRANCH_NAME"
 
@@ -343,7 +346,7 @@ jobs:
           Files: ${FILE_LIST}"
 
           gh pr create \
-            --title "Blog: $(date +%Y-%m-%d) [EN/DE/RO]" \
+            --title "Blog: $(date +%Y-%m-%d) run-$(date +%H%M) [EN/DE/RO]" \
             --body "$PR_BODY" \
             --base "${{ github.event.repository.default_branch }}" \
             --head "$BRANCH_NAME"

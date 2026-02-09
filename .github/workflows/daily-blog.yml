@@ -1,14 +1,14 @@
 # =============================================================================
-# BIOBUILDS Daily Blog Post Generator — v4.7 (3x Daily, Opus 4.6)
+# BIOBUILDS Weekly Blog Batch Generator — v5.0 (15x Weekly, Opus 4.6)
 # =============================================================================
 #
 # Architecture:
-#   Runs 3 times daily (1:00, 3:00, 5:00 UTC). Each run produces ONE topic
-#   adapted for three locales (3 articles per run, 9 articles per day):
-#   1. EN: Picks topic, writes English version (international audience)
-#   2. DE: Reads EN article, adapts for DACH (Germany/Austria focus)
-#   3. RO: Reads EN article, adapts for Romanian audience
-#   All git operations are deterministic workflow steps after Claude finishes.
+#   Runs once per week (Tuesday 00:00 UTC). Uses a 15-iteration sequential
+#   matrix to produce 15 topics, each adapted for three locales:
+#     Round N: EN (pick topic) → DE (adapt for DACH) → RO (adapt for Romania)
+#   Each round downloads the previous round's artifact so Claude sees all
+#   previously written articles and avoids duplicates.
+#   Result: 45 articles (15 × 3 languages) in a single PR for review.
 #
 # SETUP:
 #   1. Run `claude setup-token` locally → copy the token
@@ -17,7 +17,7 @@
 #      Value: (paste token from step 1)
 #   3. Place this file at: .github/workflows/daily-blog.yml
 #   4. Merge to default branch (schedule only fires from default branch)
-#   5. Test: Actions tab → "Daily Blog Post" → Run workflow
+#   5. Test: Actions tab → "Weekly Blog Batch" → Run workflow
 #
 # SECURITY:
 #   - Actions pinned to full 40-char commit SHAs
@@ -26,13 +26,11 @@
 #   - Trigger: schedule + workflow_dispatch only (no PR/fork triggers)
 # =============================================================================
 
-name: Daily Blog Post
+name: Weekly Blog Batch
 
 on:
   schedule:
-    - cron: '0 1 * * *'           # 1:00 UTC — Run 1 of 3
-    - cron: '0 3 * * *'           # 3:00 UTC — Run 2 of 3
-    - cron: '0 5 * * *'           # 5:00 UTC — Run 3 of 3
+    - cron: '0 0 * * 2'           # Tuesday 00:00 UTC — once per week
   workflow_dispatch:                # manual trigger from Actions tab
 
 permissions:
@@ -42,16 +40,21 @@ permissions:
 
 # Prevent concurrent runs from conflicting
 concurrency:
-  group: daily-blog
+  group: weekly-blog
   cancel-in-progress: false
 
 jobs:
   # ═══════════════════════════════════════════════════════════════════════════
-  # JOB 1: Write English article (picks the topic)
+  # GENERATE: 15 sequential rounds, each producing EN + DE + RO articles
   # ═══════════════════════════════════════════════════════════════════════════
-  write-en:
+  generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 75
+    strategy:
+      max-parallel: 1
+      fail-fast: true
+      matrix:
+        round: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
     steps:
       - name: Checkout repository
@@ -60,7 +63,15 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.repository.default_branch }}
 
-      - name: Generate English article
+      - name: Download previous round
+        if: matrix.round != 1
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+        with:
+          name: workspace-round-${{ matrix.round - 1 }}
+          path: .
+
+      # ─── English article ───────────────────────────────────────────────
+      - name: Generate English article (round ${{ matrix.round }}/15)
         uses: anthropics/claude-code-action@01e756b34ef7a1447e9508f674143b07d20c2631
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -69,6 +80,7 @@ jobs:
           prompt: |
             You are the BIOBUILDS blog content engine.
             Your job: write ONE new blog post in ENGLISH and save it to disk.
+            This is round ${{ matrix.round }} of 15 in a weekly batch.
 
             ██  DO NOT run any git commands.
             ██  DO NOT create branches, commits, or pull requests.
@@ -131,38 +143,8 @@ jobs:
             --model claude-opus-4-6
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
-      - name: Upload EN workspace
-        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
-        with:
-          name: workspace-en
-          path: |
-            EN/
-            DE/
-            RO/
-          retention-days: 1
-
-  # ═══════════════════════════════════════════════════════════════════════════
-  # JOB 2: Write German article (adapt from EN for DACH audience)
-  # ═══════════════════════════════════════════════════════════════════════════
-  write-de:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    needs: write-en
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.repository.default_branch }}
-
-      - name: Download EN workspace
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
-        with:
-          name: workspace-en
-          path: .
-
-      - name: Generate German article
+      # ─── German article ────────────────────────────────────────────────
+      - name: Generate German article (round ${{ matrix.round }}/15)
         uses: anthropics/claude-code-action@01e756b34ef7a1447e9508f674143b07d20c2631
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -171,6 +153,7 @@ jobs:
           prompt: |
             You are the BIOBUILDS blog content engine.
             Write the GERMAN version of today's blog post for DACH audience.
+            This is round ${{ matrix.round }} of 15 in a weekly batch.
 
             ██  DO NOT run any git commands.
 
@@ -198,38 +181,8 @@ jobs:
             --model claude-opus-4-6
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
-      - name: Upload DE workspace
-        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
-        with:
-          name: workspace-de
-          path: |
-            EN/
-            DE/
-            RO/
-          retention-days: 1
-
-  # ═══════════════════════════════════════════════════════════════════════════
-  # JOB 3: Write Romanian article (adapt from EN for Romanian audience)
-  # ═══════════════════════════════════════════════════════════════════════════
-  write-ro:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    needs: write-de
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.repository.default_branch }}
-
-      - name: Download DE workspace
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
-        with:
-          name: workspace-de
-          path: .
-
-      - name: Generate Romanian article
+      # ─── Romanian article ──────────────────────────────────────────────
+      - name: Generate Romanian article (round ${{ matrix.round }}/15)
         uses: anthropics/claude-code-action@01e756b34ef7a1447e9508f674143b07d20c2631
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -238,6 +191,7 @@ jobs:
           prompt: |
             You are the BIOBUILDS blog content engine.
             Write the ROMANIAN version of today's blog post for Romanian audience.
+            This is round ${{ matrix.round }} of 15 in a weekly batch.
 
             ██  DO NOT run any git commands.
 
@@ -265,10 +219,11 @@ jobs:
             --model claude-opus-4-6
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
-      - name: Upload final workspace
+      # ─── Upload cumulative workspace ───────────────────────────────────
+      - name: Upload workspace (round ${{ matrix.round }})
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:
-          name: workspace-final
+          name: workspace-round-${{ matrix.round }}
           path: |
             EN/
             DE/
@@ -276,15 +231,16 @@ jobs:
           retention-days: 1
 
   # ═══════════════════════════════════════════════════════════════════════════
-  # JOB 4: Commit all articles and create PR
+  # COMMIT: Collect all articles and create a single PR
   # ═══════════════════════════════════════════════════════════════════════════
   commit-and-pr:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-    needs: write-ro
+    timeout-minutes: 10
+    needs: generate
+    if: always() && !cancelled()
 
     env:
-      BRANCH_NAME: blog/auto-${{ github.run_id }}
+      BRANCH_NAME: blog/weekly-${{ github.run_id }}
 
     steps:
       - name: Checkout repository
@@ -296,13 +252,34 @@ jobs:
       - name: Create working branch
         run: git checkout -b "$BRANCH_NAME"
 
-      - name: Download final workspace
+      - name: Download all artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
         with:
-          name: workspace-final
-          path: .
+          path: _artifacts
+
+      - name: Merge latest workspace
+        id: merge
+        run: |
+          # Find the highest-numbered successful round
+          LAST=$(ls -d _artifacts/workspace-round-* 2>/dev/null \
+            | sed 's/.*workspace-round-//' | sort -n | tail -1)
+
+          if [ -z "$LAST" ]; then
+            echo "::warning::No artifacts found — nothing to commit"
+            echo "has_articles=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Using workspace-round-${LAST} (highest successful round)"
+          cp -rf "_artifacts/workspace-round-${LAST}"/EN/* EN/ 2>/dev/null || true
+          cp -rf "_artifacts/workspace-round-${LAST}"/DE/* DE/ 2>/dev/null || true
+          cp -rf "_artifacts/workspace-round-${LAST}"/RO/* RO/ 2>/dev/null || true
+          rm -rf _artifacts
+          echo "has_articles=true" >> "$GITHUB_OUTPUT"
+          echo "rounds=$LAST" >> "$GITHUB_OUTPUT"
 
       - name: Check for changes
+        if: steps.merge.outputs.has_articles == 'true'
         id: changes
         run: |
           STATUS="$(git status --porcelain)"
@@ -321,7 +298,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "blog: auto-generated posts $(date +%Y-%m-%d) run-$(date +%H%M) [EN/DE/RO]"
+          ROUNDS="${{ steps.merge.outputs.rounds }}"
+          git commit -m "blog: weekly batch $(date +%Y-%m-%d) — ${ROUNDS} topics [EN/DE/RO]"
           # Force push in case branch exists from a re-run
           git push --force-with-lease origin "$BRANCH_NAME"
 
@@ -340,13 +318,15 @@ jobs:
           fi
 
           FILE_LIST=$(git show --name-only --pretty="" HEAD)
+          ROUNDS="${{ steps.merge.outputs.rounds }}"
 
-          PR_BODY="Auto-generated blog posts in 3 languages (EN, DE, RO).
+          PR_BODY="Weekly batch of auto-generated blog posts — ${ROUNDS} topics in 3 languages (EN, DE, RO).
 
-          Files: ${FILE_LIST}"
+          Files:
+          ${FILE_LIST}"
 
           gh pr create \
-            --title "Blog: $(date +%Y-%m-%d) run-$(date +%H%M) [EN/DE/RO]" \
+            --title "Blog: weekly batch $(date +%Y-%m-%d) — ${ROUNDS} topics [EN/DE/RO]" \
             --body "$PR_BODY" \
             --base "${{ github.event.repository.default_branch }}" \
             --head "$BRANCH_NAME"

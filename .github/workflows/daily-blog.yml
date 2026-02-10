@@ -63,11 +63,16 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.repository.default_branch }}
 
+      - name: Compute previous round number
+        if: matrix.round != 1
+        id: prev
+        run: echo "round=$(( ${{ matrix.round }} - 1 ))" >> "$GITHUB_OUTPUT"
+
       - name: Download previous round
         if: matrix.round != 1
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
         with:
-          name: workspace-round-${{ matrix.round - 1 }}
+          name: workspace-round-${{ steps.prev.outputs.round }}
           path: .
 
       # ─── English article ───────────────────────────────────────────────

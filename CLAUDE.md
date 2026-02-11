@@ -106,6 +106,7 @@ Rules:
 3. Use **WebSearch** for 1-2 fresh sources (2025-2026 data)
 4. Cross-reference statistics across multiple sources
 5. Never cite a number you can't trace to a source
+6. **BIOBUILDS fact-check pass**: Before finalizing the article, use **WebFetch** on the relevant biobuilds.com pages to verify every claim you make about BIOBUILDS (pricing, timelines, materials, certifications, specs). If the site doesn't confirm it, remove it.
 
 ---
 
@@ -247,6 +248,8 @@ All classes use the `bb-` prefix. Reference `blog-styles.css` for the full list.
 5. **NEVER duplicate a topic** already covered by an existing article
 6. **NEVER use placeholder images** — use real BIOBUILDS CDN URLs from existing articles
 7. **NEVER write in the wrong language** — match the target directory (EN/DE/RO)
+8. **ALWAYS tie back to BIOBUILDS** — every article must connect to BIOBUILDS (biobuilds.com) and their passive homes/products by the conclusion; the reader should leave understanding how BIOBUILDS fits into the topic
+9. **TRIPLE-CHECK every BIOBUILDS claim** — before stating anything about BIOBUILDS homes, pricing, specs, certifications, timelines, or capabilities as fact, use **WebFetch** to verify it against the live biobuilds.com website (check relevant pages: /design, /efficient, /healthy, /prefabricated, /projects, and the homepage); if you cannot confirm a claim on their actual site, **do not include it** — no hallucinated company data, ever
 
 ---
 
@@ -275,8 +278,10 @@ Do NOT guess or improvise. Report the issue so a human can fix it.
 6. Read blog-styles.css to confirm available classes
 7. Research: WebFetch 3 sources from SOURCES.md, WebSearch for 2025 data
 8. Write: `3.3 EN [new-topic].html` matching exact format
-9. Save file to `/EN/` directory
-10. STOP — workflow handles commit, push, PR
+9. **BIOBUILDS verification**: WebFetch biobuilds.com pages to triple-check every BIOBUILDS-specific claim in the article — remove or correct anything the site doesn't confirm
+10. Ensure the article ties back to BIOBUILDS and their passive homes/products
+11. Save file to `/EN/` directory
+12. STOP — workflow handles commit, push, PR
 
 ---
 
@@ -320,3 +325,5 @@ A successful article:
 - [ ] Targets an uncovered keyword from SEO.md
 - [ ] Contains no invented statistics
 - [ ] Written in the correct language
+- [ ] Article ties back to BIOBUILDS and their passive homes/products
+- [ ] All BIOBUILDS-specific claims verified against live biobuilds.com pages via WebFetch

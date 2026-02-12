@@ -3,7 +3,7 @@
 # =============================================================================
 #
 # Architecture:
-#   Runs once per week (Tuesday 00:00 UTC). Uses a 10-iteration sequential
+#   Runs once per week (Friday 01:00 UTC). Uses a 10-iteration sequential
 #   matrix to produce 10 topics, each adapted for three locales:
 #     Round N: EN (pick topic) → DE (adapt for DACH) → RO (adapt for Romania)
 #   Each round downloads the previous round's artifact so Claude sees all
@@ -30,7 +30,7 @@ name: Weekly Blog Batch
 
 on:
   schedule:
-    - cron: '0 0 * * 2'           # Tuesday 00:00 UTC — once per week
+    - cron: '0 1 * * 5'           # Friday 01:00 UTC — once per week
   workflow_dispatch:                # manual trigger from Actions tab
 
 permissions:

@@ -1,14 +1,14 @@
 # =============================================================================
-# BIOBUILDS Weekly Blog Batch Generator — v5.0 (15x Weekly, Opus 4.6)
+# BIOBUILDS Weekly Blog Batch Generator — v6.0 (10x Weekly, Opus 4.6)
 # =============================================================================
 #
 # Architecture:
-#   Runs once per week (Tuesday 00:00 UTC). Uses a 15-iteration sequential
-#   matrix to produce 15 topics, each adapted for three locales:
+#   Runs once per week (Tuesday 00:00 UTC). Uses a 10-iteration sequential
+#   matrix to produce 10 topics, each adapted for three locales:
 #     Round N: EN (pick topic) → DE (adapt for DACH) → RO (adapt for Romania)
 #   Each round downloads the previous round's artifact so Claude sees all
 #   previously written articles and avoids duplicates.
-#   Result: 45 articles (15 × 3 languages) in a single PR for review.
+#   Result: 30 articles (10 × 3 languages) in a single PR for review.
 #
 # SETUP:
 #   1. Run `claude setup-token` locally → copy the token
@@ -45,7 +45,7 @@ concurrency:
 
 jobs:
   # ═══════════════════════════════════════════════════════════════════════════
-  # GENERATE: 15 sequential rounds, each producing EN + DE + RO articles
+  # GENERATE: 10 sequential rounds, each producing EN + DE + RO articles
   # ═══════════════════════════════════════════════════════════════════════════
   generate:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
       max-parallel: 1
       fail-fast: true
       matrix:
-        round: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+        round: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     steps:
       - name: Checkout repository
@@ -76,7 +76,7 @@ jobs:
           path: .
 
       # ─── English article ───────────────────────────────────────────────
-      - name: Generate English article (round ${{ matrix.round }}/15)
+      - name: Generate English article (round ${{ matrix.round }}/10)
         uses: anthropics/claude-code-action@01e756b34ef7a1447e9508f674143b07d20c2631
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -85,7 +85,7 @@ jobs:
           prompt: |
             You are the BIOBUILDS blog content engine.
             Your job: write ONE new blog post in ENGLISH and save it to disk.
-            This is round ${{ matrix.round }} of 15 in a weekly batch.
+            This is round ${{ matrix.round }} of 10 in a weekly batch.
 
             ██  DO NOT run any git commands.
             ██  DO NOT create branches, commits, or pull requests.
@@ -149,7 +149,7 @@ jobs:
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
       # ─── German article ────────────────────────────────────────────────
-      - name: Generate German article (round ${{ matrix.round }}/15)
+      - name: Generate German article (round ${{ matrix.round }}/10)
         uses: anthropics/claude-code-action@01e756b34ef7a1447e9508f674143b07d20c2631
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -158,7 +158,7 @@ jobs:
           prompt: |
             You are the BIOBUILDS blog content engine.
             Write the GERMAN version of today's blog post for DACH audience.
-            This is round ${{ matrix.round }} of 15 in a weekly batch.
+            This is round ${{ matrix.round }} of 10 in a weekly batch.
 
             ██  DO NOT run any git commands.
 
@@ -187,7 +187,7 @@ jobs:
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
 
       # ─── Romanian article ──────────────────────────────────────────────
-      - name: Generate Romanian article (round ${{ matrix.round }}/15)
+      - name: Generate Romanian article (round ${{ matrix.round }}/10)
         uses: anthropics/claude-code-action@01e756b34ef7a1447e9508f674143b07d20c2631
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -196,7 +196,7 @@ jobs:
           prompt: |
             You are the BIOBUILDS blog content engine.
             Write the ROMANIAN version of today's blog post for Romanian audience.
-            This is round ${{ matrix.round }} of 15 in a weekly batch.
+            This is round ${{ matrix.round }} of 10 in a weekly batch.
 
             ██  DO NOT run any git commands.
 

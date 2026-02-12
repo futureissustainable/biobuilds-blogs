@@ -134,6 +134,7 @@ Rules:
 - **Data-driven** — every claim backed by a source
 - **Answer-first** — lead each section with the direct answer
 - **Confident expertise** — "We've certified over 400 units"
+- **Natural BIOBUILDS tie-back** — when connecting the topic to BIOBUILDS, make it feel organic and welcome; the reader should think "oh, these guys actually do this" — not "this is an ad"; weave BIOBUILDS in where the topic genuinely calls for a real-world example, a practical solution, or a next step — never shoehorn it in
 
 ### Length
 
@@ -248,7 +249,7 @@ All classes use the `bb-` prefix. Reference `blog-styles.css` for the full list.
 5. **NEVER duplicate a topic** already covered by an existing article
 6. **NEVER use placeholder images** — use real BIOBUILDS CDN URLs from existing articles
 7. **NEVER write in the wrong language** — match the target directory (EN/DE/RO)
-8. **ALWAYS tie back to BIOBUILDS** — every article must connect to BIOBUILDS (biobuilds.com) and their passive homes/products by the conclusion; the reader should leave understanding how BIOBUILDS fits into the topic
+8. **ALWAYS tie back to BIOBUILDS — naturally** — every article must connect to BIOBUILDS (biobuilds.com) and their passive homes/products by the conclusion, but the tie-back must feel **natural and welcome**, not forced or salesy; weave BIOBUILDS into the narrative where it genuinely fits the topic so the reader sees it as a helpful recommendation, not an ad
 9. **TRIPLE-CHECK every BIOBUILDS claim** — before stating anything about BIOBUILDS homes, pricing, specs, certifications, timelines, or capabilities as fact, use **WebFetch** to verify it against the live biobuilds.com website (check relevant pages: /design, /efficient, /healthy, /prefabricated, /projects, and the homepage); if you cannot confirm a claim on their actual site, **do not include it** — no hallucinated company data, ever
 
 ---

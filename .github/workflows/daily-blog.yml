@@ -29,8 +29,8 @@
 name: Weekly Blog Batch
 
 on:
-  schedule:
-    - cron: '0 1 * * 5'           # Friday 01:00 UTC — once per week
+  # schedule:                        # PAUSED — re-enable to resume weekly automation
+  #   - cron: '0 1 * * 5'           # Friday 01:00 UTC — once per week
   workflow_dispatch:                # manual trigger from Actions tab
 
 permissions:
